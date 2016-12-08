@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>IOT</title>
+
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.angularjs.org/1.0.3/angular.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="js/ie-emulation-modes-warning.js"></script>
+     
+    <script src="angular.js"></script>
+
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<link rel="stylesheet" type="text/css" href="datetimepicker/jquery.datetimepicker.css"/ >
+  </head>
+
+  <body ng-app='myApp' >
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">IOT</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+           <!--  <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li> -->
+          </ul>
+         <!--  <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form> -->
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="device.html">List Of Device</a></li>
+           <!--  <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li> -->
+          </ul>
+         <!--  <ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul> -->
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-3 col-md-offset-2 main">
+          
+
+          <h2 class="sub-header">Assign Permission</h2>
+          <div ng-controller="permissionCtrl">
+            <form ng-submit="sendPermission()">
+
+              <div class="form-group">
+                <label for="object">Object</label>
+               <!--  <select class="form-control" ng-model="object" id ="objectPicker">
+                  <option value="Door Lock">Door Lock</option>
+                  
+                </select> -->
+                <select class="form-control" ng-model="objectList" ng-options="object as object.label for object in objects">           
+              </select>
+              </div>
+              <div class="form-group">
+                <label for="object">From time:</label>
+                <input type="text" id="fromDatetimepicker" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="object">To time:</label>
+                <input type="text" id="toDatetimepicker" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="toUser">Assign Permission To</label>
+                <input type="text" class="form-control" id="toUser" placeholder="Enter User email" ng-model="toUser" >
+              </div>
+              <div class="form-group">
+                <label for="toUser">Control</label>
+                <input type="text" class="form-control" id="control" placeholder="Open/Close" ng-model="control" >
+              </div>
+
+               
+              <button type="submit" class="btn btn-default" >Submit</button>
+            </form>
+             <!-- {{permissionPostData}} -->
+          </div>
+<!-------------------------------------------------  -------->
+          <div ng-controller="myCtrl">
+            <!-- <table>
+              <tr ng-repeat="h in hello">
+                <td>{{h.title}}</td>
+                <td> {{h.id}}</td>
+                <td> {{h.body}}</td>
+              </tr>
+
+              <tr>
+                <td>{{hello.title}}</td>
+                <td> {{hello.id}}</td>
+                <td> {{hello.body}}</td>
+              </tr>
+              
+            </table> -->
+          <!--   {{hello}} -->
+            <!-- {{permissionPostData}} -->
+            <!-- <form ng-submit="sendPost()"> -->
+   <!--          <form ng-submit="sendPermission()">
+              <input ng-model="newName" />
+              <br/>
+             <input ng-model="newAge" ng-change="GetAllData()" /> 
+             <input ng-model="newAge" />
+              <button type="submit">Send</button>
+
+            </form>
+           
+ -->
+
+  
+            <!-- <button ng-click="GetAllData()">deSend</button> -->
+
+          <!--   <table>
+              <tr ng-repeat="p in permissions">
+                <td>{{p.title}}</td>
+                <td> {{p.id}}</td>
+                <td> {{p.body}}</td>
+              </tr>          
+            </table> -->
+       </div> <!-- end myCtrl -->
+
+
+<!---------------------------------------  ------------------>
+        </div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2 main">
+  <div ng-controller="myCtrl">
+            <table class="table table-bordered table-striped table-hover">
+             <tr> 
+              <th>id</th> 
+              <th>User</th> 
+              <th>Object</th> 
+              <th>Time Start</th> 
+              <th>Time End</th> 
+              <th>Control</th> 
+            </tr>
+              <tr ng-repeat="p in permissions">
+              <td>{{p.id}}</td>
+                <td>{{p.user}}</td>
+                <td> {{p.object}}</td>
+                <td> {{p.time_range_start}}</td>
+                <td> {{p.time_range_end}}</td>
+                <td> {{p.control}}</td>
+              </tr>          
+            </table>
+            </div>
+</div>
+
+
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+    
+    <script src="datetimepicker/jquery.js"></script>
+    <script src="datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+    <script>
+     
+$.datetimepicker.setLocale('en');
+
+$('#fromDatetimepicker').datetimepicker({
+  dayOfWeekStart : 1,
+  lang:'en',
+  // disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
+  startDate:  '2016/12/07'
+});
+$('#fromDatetimepicker').datetimepicker({value:'2016/12/07 05:03',step:10});
+
+console.log($('#fromDatetimepicker').datetimepicker('getValue'));
+
+
+
+$('#toDatetimepicker').datetimepicker({
+  dayOfWeekStart : 1,
+  lang:'en',
+  // disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
+  startDate:  '2016/12/07'
+});
+$('#toDatetimepicker').datetimepicker({value:'2016/12/07 05:03',step:10});
+
+console.log($('#toDatetimepicker').datetimepicker('getValue'));
+
+
+
+$('#datetimepicker_dark').datetimepicker({theme:'dark'})
+
+    </script>
+</html>
